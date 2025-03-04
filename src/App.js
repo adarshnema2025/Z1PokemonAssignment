@@ -536,6 +536,90 @@
 // export default App;
 
 
+// import React, { useState, useEffect } from 'react';
+// import SearchForm from './components/SearchForm';
+// import PokemonCard from './components/PokemonCard';
+// import Navigation from './components/Navigation';
+// import { fetchPokemon } from './services/pokemonService';
+// import './App.css';
+
+// function App() {
+//   const [pokemon, setPokemon] = useState(null);
+//   const [pokemonId, setPokemonId] = useState(1);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+
+//   useEffect(() => {
+//     const loadPokemon = async () => {
+//       try {
+//         setLoading(true);
+//         setError(null);
+//         const data = await fetchPokemon(pokemonId);
+//         setPokemon(data);
+//         setPokemonId(data.id);
+//       } catch (err) {
+//         setError('Pokémon not found. Please try another name or ID.');
+//         console.error('Error loading Pokémon:', err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     loadPokemon();
+//   }, [pokemonId]);
+
+//   const handleSearch = async (query) => {
+//     if (!query.trim()) return;
+    
+//     try {
+//       setLoading(true);
+//       setError(null);
+//       const data = await fetchPokemon(query);
+//       setPokemon(data);
+//       setPokemonId(data.id);
+//     } catch (err) {
+//       setError('Pokémon not found. Please try another name or ID.');
+//       console.error('Error searching Pokémon:', err);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const navigatePokemon = (direction) => {
+//     const newId = direction === 'next' ? pokemonId + 1 : Math.max(1, pokemonId - 1);
+//     setPokemonId(newId);
+//   };
+
+//   return (
+//     <div className="app-container">
+//       <h1 className="app-title">Pokémon Info App</h1>
+      
+//       <div className="search-wrapper">
+//         <SearchForm onSearch={handleSearch} />
+//       </div>
+      
+//       <div className="content-wrapper">
+//         {loading ? (
+//           <div className="loading">Loading...</div>
+//         ) : error ? (
+//           <div className="error">{error}</div>
+//         ) : pokemon && (
+//           <div className="pokemon-card-wrapper">
+//             <Navigation 
+//               pokemonId={pokemonId} 
+//               onNavigate={navigatePokemon} 
+//             />
+//             <PokemonCard pokemon={pokemon} />
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
 import React, { useState, useEffect } from 'react';
 import SearchForm from './components/SearchForm';
 import PokemonCard from './components/PokemonCard';
@@ -605,11 +689,11 @@ function App() {
           <div className="error">{error}</div>
         ) : pokemon && (
           <div className="pokemon-card-wrapper">
+            <PokemonCard pokemon={pokemon} />
             <Navigation 
               pokemonId={pokemonId} 
               onNavigate={navigatePokemon} 
             />
-            <PokemonCard pokemon={pokemon} />
           </div>
         )}
       </div>
